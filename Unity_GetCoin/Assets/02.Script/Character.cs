@@ -13,9 +13,12 @@ public class Character : MonoBehaviour
     private bool isMove;
     private Vector3 destination;
 
-    //점수 변수
+    //점수변수
     public Text scoreT;
-    private int score = 0;
+    private int score;
+
+    //게임오버
+    public GameObject LifeT;
 
     //기본설정
     private void Awake()
@@ -23,20 +26,25 @@ public class Character : MonoBehaviour
         camera = Camera.main;
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
+        score = 0;
+        LifeT.SetActive(false);
     }
 
     //이동처리
     private void Update()
     {
-        if(Input.GetMouseButton(1))
+        if(GameManager.Instance.IsPause == false)
         {
-            RaycastHit hit;
-            if(Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out hit))
+            if (Input.GetMouseButton(1))
             {
-                SetDestination(hit.point);
+                RaycastHit hit;
+                if (Physics.Raycast(camera.ScreenPointToRay(Input.mousePosition), out hit))
+                {
+                    SetDestination(hit.point);
+                }
             }
+            LookMoveDirection();
         }
-        LookMoveDirection();
     }
 
     private void OnTriggerEnter (Collider col)
@@ -49,6 +57,10 @@ public class Character : MonoBehaviour
                 scoreT.text = "Score : " + score.ToString();
                 Destroy(col.gameObject);
                 break;
+            /*case 7:
+                GameManager.Instance.IsPause = true;
+                LifeT.SetActive(true);
+                break;*/
         }
     }
 

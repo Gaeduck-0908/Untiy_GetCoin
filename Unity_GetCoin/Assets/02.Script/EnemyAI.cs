@@ -16,21 +16,16 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if(nav.destination != target.transform.position)
+        if (GameManager.Instance.IsPause == false)
         {
-            nav.SetDestination(target.transform.position);
-        }
-        else
-        {
-            nav.SetDestination(transform.position);
-        }
-    }
-
-    private void OnCollisionStay(Collision col)
-    {
-        if(col.gameObject.name == "GAME_CHAR")
-       {
-            GameManager.Instance.IsPause = true;
+            if (nav.destination != target.transform.position)
+            {
+                nav.SetDestination(target.transform.position);
+            }
+            else
+            {
+                nav.SetDestination(transform.position);
+            }
         }
     }
 }
