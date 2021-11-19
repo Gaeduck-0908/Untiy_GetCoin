@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnCoin : MonoBehaviour
 {
+    //TODO(아이템추가예정)
     public GameObject[] prefabs;
 
     private BoxCollider size;

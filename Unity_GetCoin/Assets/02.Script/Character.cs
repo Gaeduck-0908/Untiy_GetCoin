@@ -23,8 +23,14 @@ public class Character : MonoBehaviour
     //기본설정
     private void Awake()
     {
-        camera = Camera.main;
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    //진행상황 초기화
+    private void Start()
+    {
+        camera = Camera.main;
+        GameManager.Instance.IsPause = false;
         agent.updateRotation = false;
         score = 0;
         LifeT.SetActive(false);
@@ -47,20 +53,22 @@ public class Character : MonoBehaviour
         }
     }
 
+    //충돌처리
     private void OnTriggerEnter (Collider col)
     {
         switch(col.gameObject.layer)
         {
             //코인
-            case 8:
+            case 8: 
                 score++;
                 scoreT.text = "Score : " + score.ToString();
                 Destroy(col.gameObject);
                 break;
-            /*case 7:
+            //적
+            case 7:
                 GameManager.Instance.IsPause = true;
                 LifeT.SetActive(true);
-                break;*/
+                break;
         }
     }
 

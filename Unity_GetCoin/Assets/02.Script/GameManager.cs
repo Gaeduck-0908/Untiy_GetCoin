@@ -9,12 +9,12 @@ public class GameManager : Singleton<GameManager>
 {
     //게임상황
     public bool IsPause;
-
     private void Update()
     {
-        MainChanger();
+        //게임상태
         if(IsPause == false)
         {
+            MainChanger();
             return;
         }
 
@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    //화면전환
     void MainChanger()
     {
         if (SceneManager.GetActiveScene().name == "Title")

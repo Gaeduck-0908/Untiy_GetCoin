@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
+        //따라갈 오브젝트(캐릭터)
         target = GameObject.Find("BODY");
     }
 

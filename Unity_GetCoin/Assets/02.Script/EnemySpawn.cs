@@ -6,6 +6,7 @@ public class EnemySpawn : MonoBehaviour
 {
     public GameObject EnemyAi;
     private BoxCollider size;
+    //생성될 갯수
     private int count = 15;
 
     private void Start()
@@ -13,6 +14,7 @@ public class EnemySpawn : MonoBehaviour
         size = GetComponent<BoxCollider>();
         for (int i = 0; i < count; ++i)
         {
+            //TODO (5초간격스폰 구현)
             Invoke("Spawn", 5f);
         }
         size.enabled = false;
